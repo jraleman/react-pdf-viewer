@@ -11,7 +11,7 @@
   <script>
     createPdf();
     async function createPdf() {
-      const url = 'https://www.jraleman.com/preact-pdf-viewer/files/sample.pdf';
+      const url = 'https://www.jraleman.com/preact-pdf-viewer/files/sample-pdf-with-images.pdf';
       const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
       const pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes, { ignoreEncryption: true });
       const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
