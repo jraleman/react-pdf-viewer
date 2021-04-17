@@ -1,21 +1,27 @@
 {
   "name": "preact-pdf-viewer",
   "version": "0.1.0",
+  "keywords": [],
   "description": "",
+  "author": "jraleman <jraleman@bendiburg.com>",
+  "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
-  "source": "components/hello-world/index.js",
+  "source": "widget",
   "scripts": {
     "test": "NODE_ENV=test jest",
     "build": "preact build --no-prerender --clean --template src/index.ejs --service-worker false",
     "serve": "preact serve",
     "dev": "preact watch --template src/index.ejs",
-    "dist": "microbundle --entry src/components/hello-world/index.js"
+    "dist": "microbundle --entry src/widget.js"
   },
-  "keywords": [],
-  "author": "Zouhir <zouhir@zouhir.org>",
-  "license": "MIT",
+  "dependencies": {
+    "preact": "^8.5.2",
+    "preact-compat": "^3.17.0",
+    "preact-habitat": "^3.1.0",
+    "preact-router": "^2.5.7"
+  },
   "devDependencies": {
     "eslint": "^4.5.0",
     "identity-obj-proxy": "^3.0.0",
@@ -23,16 +29,9 @@
     "microbundle": "^0.6.0",
     "node-sass": "^4.5.3",
     "preact-cli": "^2.0.2",
-    "preact-render-to-string": "^3.7.0",
+    "preact-render-to-string": "^4.1.0",
     "preact-widget-scripts": "^0.6.0",
     "sass-loader": "^6.0.6"
-  },
-  "dependencies": {
-    "preact": "^8.5.2",
-    "preact-compat": "^3.17.0",
-    "preact-habitat": "^3.1.0",
-    "preact-render-to-string": "^4.1.0",
-    "preact-router": "^2.5.7"
   },
   "jest": {
     "verbose": true,

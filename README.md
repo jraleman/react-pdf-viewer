@@ -10,3 +10,4 @@
 - https://npm.io/package/@grapecity/gcpdfviewer
 - https://github.com/wojtekmaj/react-pdf
 - https://npm.io/package/@pleasedproperty/preact-pdf
+- https://stackoverflow.com/questions/583753/using-css-to-affect-div-style-inside-iframe
