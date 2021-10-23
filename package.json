@@ -47,6 +47,7 @@
     ]
   },
   "dependencies": {
-    "pdf-lib": "^1.17.0"
+    "pdf-lib": "^1.17.0",
+    "pdfjs-dist": "^2.10.377"
   }
 }
