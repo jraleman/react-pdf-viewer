@@ -1,5 +1,4 @@
 import habitat from "preact-habitat";
-
 import Widget from "./component";
 
 let _habitat = habitat(Widget);

@@ -1,11 +1,15 @@
 import { h } from 'preact';
-
+import PDFViewer from './pdf-viewer';
+import pdfFile from '../files/sample.pdf';
 import "./style.css";
 
-export default function App(props) {
-  return (
-    <div>
-      <h1 style={{ color: props.color }}>Hello, World!</h1>
-    </div>
-  );
-}
+const App = (props) => {
+    const pdfPath = pdfFile;
+    return (
+      <div>
+          <PDFViewer pdfPath={pdfPath} />
+      </div>
+    );
+};
+
+export default App;
