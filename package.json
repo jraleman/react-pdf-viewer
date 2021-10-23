@@ -45,5 +45,8 @@
     "setupFiles": [
       "<rootDir>/tests/__mocks__/setupTests.js"
     ]
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.0"
   }
 }
