@@ -1,24 +1,22 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import PdfViewer from './components/pdf-viewer';
+import pdfSample from './assets/sample.pdf';
 
-function App() {
+const App = () => {
+  const pdfPath = pdfSample;
+  const opacity = 0.8; // 80%
+  const timeout = 3600 / 4; // 15 mins
+  const disableRightClick = false;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <PdfViewer
+        pdfPath={pdfPath}
+        opacity={opacity}
+        timeout={timeout}
+        disableRightClick={disableRightClick}
+      />
     </div>
   );
 }

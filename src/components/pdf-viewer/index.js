@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react';
-import { loadPdf } from '../utils';
+import { Document, Page } from 'react-pdf';
 import './style.css';
 
 const PdfViewer = ({ 
   pdfPath = '',
-  timeout = undefined,
+  timeout = 0,
   opacity = 1,
   disableRightClick = false,
 }) => {
   const [hide, setHide] = useState(false);
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+  // useEffect(() => {
+  //   const initPdf = async () => {
+  //     const pdf = await loadPdf(pdfPath);
+  //     document.getElementById('pdf').src = pdf;
+  //   };
+  //   initPdf();
+  // }, [pdfPath]);
 
   useEffect(() => {
-    const initPdf = async () => {
-      const pdf = await loadPdf(pdfPath);
-      document.getElementById('pdf').src = pdf;
-    };
-    initPdf();
-  }, [pdfPath]);
-
-  useEffect(() => {
-    if (timeout !== undefined) {
+    if (timeout) {
       const seconds = timeout * 1000;
       setTimeout(() => {
         setHide(true);
@@ -36,7 +41,13 @@ const PdfViewer = ({
   }
   return (
     <div style={{ opacity }}>
-      <iframe id="pdf" className="pdf-frame" />
+      <Document
+        file={pdfPath}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <p>Page {pageNumber} of {numPages}</p>
     </div>
   );
 }
