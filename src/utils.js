@@ -7,10 +7,9 @@ import {
   Duplex,
 } from 'pdf-lib';
 
-const loadPdf = async (url) => {
+export const loadPdf = async (pdfPath) => {
   // Gets and loads pdf file
-  const url = pdfPath;
-  const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
+  const existingPdfBytes = await fetch(pdfPath).then(res => res.arrayBuffer());
   console.log({ existingPdfBytes })
   const pdfDoc = await PDFDocument.load(existingPdfBytes, { ignoreEncryption: true });
   // Set viewer preferences
