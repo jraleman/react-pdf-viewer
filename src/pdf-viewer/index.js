@@ -5,8 +5,8 @@ import './style.css';
 const PdfViewer = ({ 
   pdfPath = '',
   timeout = undefined,
-  avoidCopy = false,
   opacity = 1,
+  disableRightClick = false,
 }) => {
   const [hide, setHide] = useState(false);
 
@@ -28,8 +28,8 @@ const PdfViewer = ({
   }, [timeout]);
 
   useEffect(() => {
-    // TODO: implement avoidCopy functionality
-  }, [avoidCopy])
+    // TODO: implement disableRightClick functionality
+  }, [disableRightClick])
 
   if (hide) {
     return null;

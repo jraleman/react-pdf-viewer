@@ -6,15 +6,15 @@ import "./style.css";
 const App = (props) => {
   const pdfPath = pdfFile;
   const timeout = 3600 / 4; // 15 mins
-  const avoidCopy = true;
   const opacity = 0.8; // 20% transparent
+  const disableRightClick = true;
   return (
     <div>
       <PDFViewer
         pdfPath={pdfPath}
         timeout={timeout}
-        avoidCopy={avoidCopy}
         opacity={opacity}
+        disableRightClick={disableRightClick}
       />
     </div>
   );
