@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Document, Page } from 'react-pdf';
+import { Document, Page, pdfjs } from 'react-pdf';
+import pdfjsWorker from "react-pdf/node_modules/pdfjs-dist/build/pdf.worker.entry";
 import './style.css';
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const PdfViewer = ({ 
   pdfPath = '',
