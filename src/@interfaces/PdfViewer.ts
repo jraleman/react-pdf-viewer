@@ -6,5 +6,5 @@ export interface IPdfViewer {
     opacity?: zeroToOne;
     scale?: zeroToOne;
     rotate?: 0 | 90 | 180 | 270;
-    disableRightClick?: boolean;
+    disableCopy?: boolean;
 }

@@ -8,18 +8,15 @@ import pdfSample from './assets/sample.pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const App = () => {
-  const pdfPath = pdfSample;
-  const opacity = 0.8; // 80%
-  const timeout = 3600 / 4; // 15 mins
-  const disableRightClick = false;
+  const props = {
+    pdfPath: pdfSample,
+    timeout: 3600 / 4, // 15 mins
+    disableCopy: true,
+  };
   return (
     <div>
-      <PdfViewer
-        pdfPath={pdfPath}
-        opacity={opacity}
-        timeout={timeout}
-        disableRightClick={disableRightClick}
-      />
+      <code>{JSON.stringify(props)}</code>
+      <PdfViewer {...props} />
     </div>
   );
 }

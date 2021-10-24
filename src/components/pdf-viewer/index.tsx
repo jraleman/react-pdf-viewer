@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Document, Page } from 'react-pdf';
+import { useEffect, useState, MouseEvent } from 'react';
+import { Document, Page, PDFPageProxy } from 'react-pdf';
 import { IPdfViewer } from '../../@interfaces/PdfViewer';
 
 const PdfViewer = ({ 
@@ -8,7 +8,7 @@ const PdfViewer = ({
   opacity = 1.0,
   scale = 1.0,
   rotate = 0,
-  disableRightClick = false,
+  disableCopy = false,
 }: IPdfViewer) => {
   const [hide, setHide] = useState<boolean>(false);
   const [numPages, setNumPages] = useState<number | null>(null);
@@ -30,8 +30,12 @@ const PdfViewer = ({
     }
   };
 
-  const handleOnClick = () => {
-    window.alert('You shall not copy');
+  const handleOnClick = (event: MouseEvent, page: PDFPageProxy) => {
+    if (disableCopy) {
+      event.preventDefault();
+      window.alert('You shall not copy');
+      console.log({ page });
+    }
   };
 
   useEffect(() => {
@@ -44,31 +48,35 @@ const PdfViewer = ({
   }, [timeout]);
 
   useEffect(() => {
-    // TODO: implement disableRightClick functionality
-  }, [disableRightClick])
+    const preventCtxMenu = (event: Event) => event.preventDefault();
+    disableCopy && document.addEventListener('contextmenu', preventCtxMenu);
+    return () => {
+      disableCopy && document.removeEventListener('contextmenu', preventCtxMenu);
+    }
+  }, [disableCopy])
+
+  const userSelect = disableCopy ? 'none' : 'auto';
 
   if (hide) {
     return null;
   }
   return (
-    <div style={{ opacity }}>
+    <div>
       <p>Page {pageNumber} of {numPages}</p>
       <button onClick={handlePrevPage}>Prev</button>
       <button onClick={handleNextPage}>Next</button>
-      <Document
-        file={pdfPath}
-        onLoadSuccess={onDocumentLoadSuccess}
-        error={DisplayError}
-        loading={DisplayLoading}
-        noData={DisplayNoData}
-        rotate={rotate}
+      <div style={{ opacity, userSelect }}>
+        <Document
+          file={pdfPath}
+          rotate={rotate}
+          error={DisplayError}
+          loading={DisplayLoading}
+          noData={DisplayNoData}
+          onLoadSuccess={onDocumentLoadSuccess}
         >
-        <Page
-          scale={scale}
-          pageNumber={pageNumber}
-          onClick={handleOnClick}
-        />
-      </Document>
+          <Page scale={scale} pageNumber={pageNumber} onClick={handleOnClick} />
+        </Document>
+      </div>
     </div>
   );
 };
