@@ -5,7 +5,9 @@ import { IPdfViewer } from '../../@interfaces/PdfViewer';
 const PdfViewer = ({ 
   pdfPath = '',
   timeout = 0,
-  opacity = 1,
+  opacity = 1.0,
+  scale = 1.0,
+  rotate = 0,
   disableRightClick = false,
 }: IPdfViewer) => {
   const [hide, setHide] = useState<boolean>(false);
@@ -26,6 +28,10 @@ const PdfViewer = ({
     if (pageNumber > 1) {
       setPageNumber((n) => n -= 1);
     }
+  };
+
+  const handleOnClick = () => {
+    window.alert('You shall not copy');
   };
 
   useEffect(() => {
@@ -52,11 +58,25 @@ const PdfViewer = ({
       <Document
         file={pdfPath}
         onLoadSuccess={onDocumentLoadSuccess}
-      >
-        <Page pageNumber={pageNumber} />
+        error={DisplayError}
+        loading={DisplayLoading}
+        noData={DisplayNoData}
+        rotate={rotate}
+        >
+        <Page
+          scale={scale}
+          pageNumber={pageNumber}
+          onClick={handleOnClick}
+        />
       </Document>
     </div>
   );
-}
+};
+
+const DisplayError = () => <div>An error has occured!</div>
+
+const DisplayLoading = () => <div>Loading... please wait</div>
+
+const DisplayNoData = () => <div>Not found!</div>
 
 export default PdfViewer;
