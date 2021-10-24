@@ -4,7 +4,8 @@ export interface IPdfViewer {
     pdfPath: string;
     timeout?: number;
     opacity?: zeroToOne;
+    disableCopy?: boolean;
+    maxPages?: number;
     scale?: zeroToOne;
     rotate?: 0 | 90 | 180 | 270;
-    disableCopy?: boolean;
 }

@@ -6,16 +6,17 @@ const PdfViewer = ({
   pdfPath = '',
   timeout = 0,
   opacity = 1.0,
+  disableCopy = false,
   scale = 1.0,
   rotate = 0,
-  disableCopy = false,
+  maxPages = undefined,
 }: IPdfViewer) => {
   const [hide, setHide] = useState<boolean>(false);
-  const [numPages, setNumPages] = useState<number | null>(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [numPages, setNumPages] = useState<number>(1);
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-    setNumPages(numPages);
+    setNumPages(maxPages || numPages);
   };
 
   const handleNextPage = () => {
