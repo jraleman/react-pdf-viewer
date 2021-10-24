@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/static/js/main.47258ce3.chunk.js",
+    "main.js.map": "/static/js/main.47258ce3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.67861561.js",
+    "runtime-main.js.map": "/static/js/runtime-main.67861561.js.map",
+    "static/js/2.acb18461.chunk.js": "/static/js/2.acb18461.chunk.js",
+    "static/js/2.acb18461.chunk.js.map": "/static/js/2.acb18461.chunk.js.map",
+    "static/js/3.a8e6f243.chunk.js": "/static/js/3.a8e6f243.chunk.js",
+    "static/js/3.a8e6f243.chunk.js.map": "/static/js/3.a8e6f243.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.acb18461.chunk.js.LICENSE.txt": "/static/js/2.acb18461.chunk.js.LICENSE.txt",
+    "static/media/sample.ac0398d4.pdf": "/static/media/sample.ac0398d4.pdf",
+    "static/media/the_little_prince.5ca0ffd2.pdf": "/static/media/the_little_prince.5ca0ffd2.pdf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.67861561.js",
+    "static/js/2.acb18461.chunk.js",
+    "static/js/main.47258ce3.chunk.js"
+  ]
+}
