@@ -1,17 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-// @ts-ignore
-import pdfjsWorker from 'react-pdf/node_modules/pdfjs-dist/build/pdf.worker.entry';
-import './style.css';
-
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
-
-interface IPdfViewer {
-  pdfPath: string;
-  timeout?: number;
-  opacity?: number;
-  disableRightClick?: boolean;
-}
+import { Document, Page } from 'react-pdf';
+import { IPdfViewer } from '../../@interfaces/PdfViewer';
 
 const PdfViewer = ({ 
   pdfPath = '',
@@ -26,13 +15,6 @@ const PdfViewer = ({
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
-  // useEffect(() => {
-  //   const initPdf = async () => {
-  //     const pdf = await loadPdf(pdfPath);
-  //     document.getElementById('pdf').src = pdf;
-  //   };
-  //   initPdf();
-  // }, [pdfPath]);
 
   const handleNextPage = () => {
     if (numPages && numPages > pageNumber) {
