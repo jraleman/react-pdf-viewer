@@ -1,4 +1,5 @@
 import { useEffect, useState, MouseEvent } from 'react';
+import styled from 'styled-components';
 import { Document, Page, PDFPageProxy } from 'react-pdf';
 import { IPdfViewer } from '../../@interfaces/PdfViewer';
 
@@ -62,11 +63,13 @@ const PdfViewer = ({
     return null;
   }
   return (
-    <div>
-      <p>Page {pageNumber} of {numPages}</p>
-      <button onClick={handlePrevPage}>Prev</button>
-      <button onClick={handleNextPage}>Next</button>
-      <div style={{ opacity, userSelect }}>
+    <>
+      <DocumentController>
+        <PageIndicator>Page <b>{pageNumber}</b> of <b>{numPages}</b></PageIndicator>
+        <StyledButton onClick={handlePrevPage}>Prev</StyledButton>
+        <StyledButton onClick={handleNextPage}>Next</StyledButton>
+      </DocumentController>
+      <DocumentWrapper style={{ opacity, userSelect }}>
         <Document
           file={pdfPath}
           rotate={rotate}
@@ -77,8 +80,8 @@ const PdfViewer = ({
         >
           <Page scale={scale} pageNumber={pageNumber} onClick={handleOnClick} />
         </Document>
-      </div>
-    </div>
+      </DocumentWrapper>
+    </>
   );
 };
 
@@ -87,5 +90,44 @@ const DisplayError = () => <div>An error has occured!</div>
 const DisplayLoading = () => <div>Loading... please wait</div>
 
 const DisplayNoData = () => <div>Not found!</div>
+
+const DocumentController = styled.div`
+
+`;
+
+const StyledButton = styled.button`
+  overflow: visible;
+  margin: 0;
+  background: transparent;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 36px 22px;
+  background-color: #fff;
+  color: #666;
+  border: 2px solid #666;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  :hover {
+    opacity: 0.75;
+  }
+`;
+
+const PageIndicator = styled.p`
+  text-transform: uppercase;
+  font-weight: 500;
+`;
+
+const DocumentWrapper = styled.div`
+  div {
+    div {
+      canvas {
+        margin: 0 auto;
+      }
+    }
+  }
+`;
 
 export default PdfViewer;
