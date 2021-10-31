@@ -1,35 +1,9 @@
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
-
-interface ISettingsController {
-    onSave: Function;
-}
-
-interface IInputsController {
-    key: string;
-    type: 'file' | 'number' | 'checkbox' | 'input' | 'radio';
-    label: string;
-    value: string | number | undefined;
-    onChange: ChangeEventHandler<HTMLInputElement>;
-    disabled?: boolean;
-}
-
-const InputsController = ({ inputs }: { inputs: IInputsController[] }) => (
-    <> 
-        {inputs.map(({ key, type, label, value, onChange, disabled }) => (
-            <div key={key}>
-                <label htmlFor={key}>{label}</label>
-                <input 
-                    name={key}
-                    type={type}
-                    value={value}
-                    onChange={onChange}
-                    disabled={disabled} 
-                />
-            </div>
-        ))}
-    </>
-);
+import { useTranslation } from 'react-i18next';
+import InputsController from './InputsController';
+import ISettingsController from '../@interfaces/ISettingsController';
+import IInputsController from '../@interfaces/IInputsController';
 
 const SettingsController = ({ onSave = () => {} }: ISettingsController) => {
     const [pdfPath, setPdfPath] = useState<string>('');
@@ -39,6 +13,7 @@ const SettingsController = ({ onSave = () => {} }: ISettingsController) => {
     const [pdfRotate, setPdfRotate] = useState<number>(0);
     const [maxPages, setMaxPages] = useState<number | undefined>(undefined);
     const [disableCopy, setDisableCopy] = useState<boolean>(false);
+    const { t } = useTranslation();
     
     const handleOnSave = () => {
         onSave({
@@ -56,7 +31,7 @@ const SettingsController = ({ onSave = () => {} }: ISettingsController) => {
         {
             key: 'pdf-path',
             type: 'file',
-            label: 'PDF Path',
+            label: t('pdfPathInput'),
             value: pdfPath,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setPdfPath(e.target.value),
             disabled: true,
@@ -64,55 +39,62 @@ const SettingsController = ({ onSave = () => {} }: ISettingsController) => {
         {
             key: 'pdf-timeout',
             type: 'number',
-            label: 'Timeout',
+            label:  t('timeoutInput'),
             value: pdfTimeout,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setPdfTimeout(Number(e.target.value)),
         },
         {
             key: 'pdf-opacity',
             type: 'number',
-            label: 'Opacity',
+            label:  t('opacityInput'),
             value: pdfOpacity,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setPdfOpacity(Number(e.target.value)),
         },
         {
             key: 'pdf-scale',
             type: 'number',
-            label: 'Scale',
+            label: t('scaleInput'),
             value: pdfScale,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setPdfScale(Number(e.target.value)),
         },
         {
             key: 'pdf-rotate',
             type: 'number',
-            label: 'Rotate',
+            label: t('rotateInput'),
             value: pdfRotate,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setPdfRotate(Number(e.target.value)),
         },
         {
             key: 'max-pages',
             type: 'number',
-            label: 'Max Pages',
+            label: t('maxPagesInput'),
             value: maxPages,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setMaxPages(Number(e.target.value)),
         },
         {
             key: 'disable-copy',
             type: 'checkbox',
-            label: 'Disable Copy',
+            label: t('disableCopyInput'),
             value: `${disableCopy}`,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setDisableCopy(e.target.checked),
         },
     ];
-    
 
+    const titleLabel = t('settingsTitle');
+    const saveButtonLabel = t('saveSettings');
     return (
-        <div>
-            <div>Settings</div>
+        <SettingsContainer>
+            <SettingsTitle>{titleLabel}</SettingsTitle>
             <InputsController inputs={inputsArr} />
-            <button onClick={handleOnSave}>Save Settings</button>
-        </div>
+            <SaveButton onClick={handleOnSave}>{saveButtonLabel}</SaveButton>
+        </SettingsContainer>
     );
 };
+
+const SaveButton = styled.button``;
+
+const SettingsTitle = styled.h2``;
+
+const SettingsContainer = styled.div``;
 
 export default SettingsController;
