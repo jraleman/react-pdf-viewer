@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { pdfjs } from 'react-pdf';
 // @ts-ignore
 import pdfjsWorker from 'react-pdf/node_modules/pdfjs-dist/build/pdf.worker.entry';
@@ -19,17 +20,19 @@ const App = () => {
         maxPages: 10,
         rotate: 0,
     });
+    const { t } = useTranslation();
 
     // TODO: define PDFProps
     const onSave = (savedProps: any) => {
         setPdfProps({ ...savedProps });
     };
 
+    const appTitleLabel = t('appTitle');
     return (
         <Container>
             <CodePreview>{JSON.stringify(pdfProps)}</CodePreview>
             {/* <SettingsController onSave={onSave} /> */}
-            <WidgetTitle>PDF Viewer Preview</WidgetTitle>
+            <WidgetTitle>{appTitleLabel}</WidgetTitle>
             <WidgetWrapper>
                 <PdfViewer {...pdfProps} />
             </WidgetWrapper>

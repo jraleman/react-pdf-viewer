@@ -1,0 +1,18 @@
+{
+    "appTitle": "PDF Viewer Preview",
+    "pageIndicator": "Page {{ pageNumber }} of {{ numPages }}",
+    "pagePrevious": "Prev",
+    "pageNext": "Next",
+    "displayError": "An error has occured!",
+    "displayLoading": "Loading... please wait",
+    "displayNoData": "Not found!",
+    "settingsTitle": "Settings",
+    "saveSettings": "Save Settings",
+    "pdfPathInput": "PDF Path",
+    "timeoutInput": "Timeout (in seconds)",
+    "opacityInput": "Opacity (transparency)",
+    "disableCopyInput": "Disable Copy",
+    "scaleInput": "Scale",
+    "rotateInput": "Rotate",
+    "maxPagesInput": "Max No. of Pages"
+}
