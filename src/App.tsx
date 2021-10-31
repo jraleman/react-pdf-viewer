@@ -8,7 +8,7 @@ import PdfViewer from './components/PdfViewer';
 import pdfSample from './assets/sample.pdf';
 import pdfLittlePrince from './assets/the_little_prince.pdf';
 import IPdfViewer from './@interfaces/IPdfViewer';
-// import SettingsController from './components/SettingsController';
+import SettingsController from './components/SettingsController';
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
@@ -31,11 +31,11 @@ const App = () => {
     return (
         <Container>
             <CodePreview>{JSON.stringify(pdfProps)}</CodePreview>
-            {/* <SettingsController onSave={onSave} /> */}
             <WidgetTitle>{appTitleLabel}</WidgetTitle>
             <WidgetWrapper>
                 <PdfViewer {...pdfProps} />
             </WidgetWrapper>
+            <SettingsController onSave={onSave} />
         </Container>
     );
 };
@@ -51,6 +51,7 @@ const CodePreview = styled.code`
     margin-bottom: 1em;
     color: #f9f9f9;
     background-color: #222222;
+    display: block;
 `;
 
 const WidgetWrapper = styled.div`
