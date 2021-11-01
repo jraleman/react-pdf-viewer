@@ -45,17 +45,21 @@ const SettingsController = ({ onSave = () => {} }: ISettingsController) => {
         },
         {
             key: 'pdf-opacity',
-            type: 'number',
+            type: 'range',
             label:  t('opacityInput'),
             value: pdfOpacity,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setPdfOpacity(Number(e.target.value)),
+            min: 0,
+            max: 10,
         },
         {
             key: 'pdf-scale',
-            type: 'number',
+            type: 'range',
             label: t('scaleInput'),
             value: pdfScale,
             onChange: (e: ChangeEvent<HTMLInputElement>) => setPdfScale(Number(e.target.value)),
+            min: 1,
+            max: 100,
         },
         {
             key: 'pdf-rotate',
@@ -84,16 +88,39 @@ const SettingsController = ({ onSave = () => {} }: ISettingsController) => {
     const saveButtonLabel = t('saveSettings');
     return (
         <SettingsContainer>
+            <hr />
             <SettingsTitle>{titleLabel}</SettingsTitle>
             <InputsController inputs={inputsArr} />
-            <SaveButton onClick={handleOnSave}>{saveButtonLabel}</SaveButton>
+            <SaveButton onClick={handleOnSave} disabled>
+                {saveButtonLabel}
+            </SaveButton>
         </SettingsContainer>
     );
 };
 
-const SaveButton = styled.button``;
+const SaveButton = styled.button`
+    overflow: visible;
+    margin: 0;
+    background: transparent;
+    font: inherit;
+    line-height: normal;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 16px 36px 22px;
+    background-color: #fff;
+    color: #666;
+    border: 2px solid #666;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    :hover {
+        opacity: 0.75;
+    }
+`;
 
-const SettingsTitle = styled.h2``;
+const SettingsTitle = styled.h3`
+    color: #666666;
+`;
 
 const SettingsContainer = styled.div``;
 

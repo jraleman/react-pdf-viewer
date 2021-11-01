@@ -37,8 +37,7 @@ const PdfViewer = ({
     const handleOnClick = (event: MouseEvent, page: PDFPageProxy) => {
         if (disableCopy) {
             event.preventDefault();
-            window.alert('You shall not copy');
-            console.log({ page });
+            console.log('You shall not copy', { page });
         }
     };
 

@@ -17,7 +17,7 @@ const App = () => {
         pdfPath: pdfLittlePrince || pdfSample,
         timeout: 3600 / 4, // 15 mins
         disableCopy: true,
-        maxPages: 10,
+        // maxPages: 10,
         rotate: 0,
     });
     const { t } = useTranslation();
@@ -30,12 +30,12 @@ const App = () => {
     const appTitleLabel = t('appTitle');
     return (
         <Container>
-            <CodePreview>{JSON.stringify(pdfProps)}</CodePreview>
             <WidgetTitle>{appTitleLabel}</WidgetTitle>
             <WidgetWrapper>
                 <PdfViewer {...pdfProps} />
             </WidgetWrapper>
             <SettingsController onSave={onSave} />
+            <CodePreview>{JSON.stringify(pdfProps)}</CodePreview>
         </Container>
     );
 };
